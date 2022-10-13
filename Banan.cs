@@ -22,6 +22,7 @@ using Assets.Scripts.Models.Bloons.Behaviors;
 using Assets.Scripts.Simulation.Behaviors;
 using Assets.Scripts.Simulation.Bloons;
 using Assets.Scripts.Models.Towers.Behaviors;
+using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
 
 [assembly: MelonInfo(typeof(Banan.Banan), ModHelperData.Name, ModHelperData.Version, ModHelperData.RepoOwner)]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
@@ -60,6 +61,13 @@ class Yes
             if (tower.GetBehavior<AirUnitModel>() != null)
             {
                 tower.GetBehavior<AirUnitModel>().display = new() { guidRef = "cd01e5de10343944ea24e6a6b3690b3a" };
+            }
+            foreach (var a in tower.GetAbilities())
+            {
+                if(a.GetBehavior<ActivateAttackModel>() != null)
+                {
+                    a.GetBehavior<ActivateAttackModel>().attacks[0].weapons[0].projectile.display = new() { guidRef = "cd01e5de10343944ea24e6a6b3690b3a" };
+                }
             }
         }
         foreach (var bloon in __result.bloons)
